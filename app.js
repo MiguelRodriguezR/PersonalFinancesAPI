@@ -29,7 +29,7 @@ mongoose.connect('mongodb://localhost:27017/transactionsdb', {
 })
 .then(() => {
   console.log('Conectado a MongoDB');
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 3001;
   app.listen(port, () => {
     console.log(`Servidor corriendo en el puerto ${port}`);
   });
