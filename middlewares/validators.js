@@ -2,6 +2,8 @@ const { body, validationResult } = require('express-validator');
 
 // Validador para TransactionModel
 exports.validateTransaction = [
+  body('id')
+    .notEmpty().withMessage('El ID es obligatorio'),
   body('amount')
     .isNumeric().withMessage('El monto debe ser un número'),
   body('description')
@@ -24,6 +26,8 @@ exports.validateTransaction = [
 
 // Validador para CategoryModel
 exports.validateCategory = [
+  body('id')
+    .notEmpty().withMessage('El ID es obligatorio'),
   body('name')
     .notEmpty().withMessage('El nombre es obligatorio'),
   body('level')
@@ -38,6 +42,8 @@ exports.validateCategory = [
 
 // Validador para TagModel
 exports.validateTag = [
+  body('id')
+    .notEmpty().withMessage('El ID es obligatorio'),
   body('name')
     .notEmpty().withMessage('El nombre es obligatorio'),
   (req, res, next) => {
