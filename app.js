@@ -11,7 +11,14 @@ const errorHandler = require('./middlewares/errorHandler');
 const app = express();
 
 // Middlewares
-app.use(bodyParser.json());
+app.use(bodyParser.json({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+
+// Set response headers for proper encoding
+app.use((req, res, next) => {
+  res.header('Content-Type', 'application/json; charset=utf-8');
+  next();
+});
 
 // Rutas
 app.use('/api/transactions', transactionRoutes);
