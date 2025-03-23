@@ -1,5 +1,29 @@
 const Transaction = require('../models/Transaction');
 
+exports.updateTransaction = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    
+    // Find the transaction
+    let transaction = await Transaction.findOne({ id });
+    
+    if (!transaction) {
+      return res.status(404).json({ 
+        success: false, 
+        message: 'Transaction not found' 
+      });
+    }
+    
+    // Update the transaction
+    Object.assign(transaction, req.body);
+    await transaction.save();
+    
+    res.status(200).json(transaction);
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.deleteTransaction = async (req, res, next) => {
   try {
     const { id } = req.params;
